@@ -5,17 +5,14 @@
         private readonly double _initialPayment;
         private readonly double _interestRate;
 
-        public AccretionAccount(int id, int ownerId, double amount, double interestRate)
+        public AccretionAccount(int ownerId, double amount, double interestRate) : base(ownerId, amount)
         {
-            Id = id;
-            OwnerId = ownerId;
-            Amount = amount;
             _initialPayment = amount;
             _interestRate = interestRate;
             IsClosed = false;
         }
 
-        public bool TakeMoney(double amountMoney)
+        public override bool TakeMoney(double amountMoney)
         {
             if (amountMoney < _initialPayment || Amount > amountMoney || IsClosed) return false;
 
@@ -24,7 +21,7 @@
             return true;
         }
 
-        public bool Refill(double amountMoney)
+        public override bool Refill(double amountMoney)
         {
             if (amountMoney < _initialPayment || IsClosed) return false;
 

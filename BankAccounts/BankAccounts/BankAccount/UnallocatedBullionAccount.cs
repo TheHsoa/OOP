@@ -1,4 +1,6 @@
-﻿namespace BankAccounts
+﻿using System;
+
+namespace BankAccounts
 {
     class UnallocatedBullionAccount : BankAccount
     {
@@ -7,15 +9,11 @@
 
         public new double AmountMoney { get { return Amount * ExchangeRate; } }
 
-        public UnallocatedBullionAccount(int id, int ownerId, double amount, int metalType, double exchangeRate)
-        {
-            Id = id;
-            OwnerId = ownerId;
-            Amount = amount;
+        public UnallocatedBullionAccount(int ownerId, double amount, int metalType, double exchangeRate) : base(ownerId, amount)
+        { 
             _metalType = metalType;
             ExchangeRate = exchangeRate;
-            Amount = amount / ExchangeRate;
-            IsClosed = false;
+            Amount /= ExchangeRate;
         }
 
         public bool TakeMoney(double amountGramm, out double amount)
@@ -32,13 +30,27 @@
             return false;
         }
 
-        public bool Refill(double amountMoney)
+
+
+        public override bool Refill(double amountMoney)
         {
             if (IsClosed) return false;
 
             Amount += amountMoney / ExchangeRate;
 
             return true;
+        }
+
+        public override bool TakeMoney(double amountMoney)
+        {
+            double amountGramm = amountMoney / ExchangeRate;
+            if (amountGramm <= Amount || !IsClosed)
+            {
+                Amount -= amountGramm;
+                return true;
+            }
+
+            return false;
         }
     }
 }

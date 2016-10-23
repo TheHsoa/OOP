@@ -2,15 +2,9 @@
 {
     class SavingAccount : BankAccount
     {
-        public SavingAccount(int id, int ownerId, double amount)
-        {
-            Id = id;
-            OwnerId = ownerId;
-            Amount = amount;
-            IsClosed = false;
-        }
+        public SavingAccount(int ownerId, double amount) : base(ownerId, amount) { }
 
-        public bool TakeMoney(double amountMoney)
+        public override bool TakeMoney(double amountMoney)
         {
             if (amountMoney > Amount || IsClosed) return false;
 
@@ -19,7 +13,7 @@
             return true;
         }
 
-        public bool Refill(double amountMoney)
+        public override bool Refill(double amountMoney)
         {
             if (IsClosed) return false;
 

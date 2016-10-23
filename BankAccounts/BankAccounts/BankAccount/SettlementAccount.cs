@@ -4,16 +4,12 @@
     {
         private readonly double _serviceFee;
 
-        public SettlementAccount(int id, int ownerId, double amount, double serviceFee)
+        public SettlementAccount(int ownerId, double amount, double serviceFee) : base(ownerId, amount)
         {
-            Id = id;
-            OwnerId = ownerId;
-            Amount = amount;
             _serviceFee = serviceFee;
-            IsClosed = false;
         }
 
-        public bool TakeMoney(double amountMoney)
+        public override bool TakeMoney(double amountMoney)
         {
             if (amountMoney > Amount || IsClosed) return false;
 
@@ -22,7 +18,7 @@
             return true;
         }
 
-        public bool Refill(double amountMoney)
+        public override bool Refill(double amountMoney)
         {
             if (IsClosed) return false;
 
