@@ -1,8 +1,5 @@
 ﻿namespace BankAccounts.Bank
 {
-    /// <summary>
-    /// The bank.
-    /// </summary>
     public class Bank
     {
        public bool TrancferMoneyFromAccountToAccount(BankAccount senderAccount, BankAccount recipientAccount, double ammountMoney)
@@ -14,6 +11,5 @@
 
             return true;
         }
-
     }
 }

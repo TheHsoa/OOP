@@ -1,6 +1,6 @@
 ﻿namespace BankAccounts
 {
-    abstract class BankAccount
+    public abstract class BankAccount
     {
         private static int _numId = 0;
         protected int Id;
@@ -11,7 +11,7 @@
 
         public double AmountMoney { get { return Amount; } }
 
-        public BankAccount(int ownerId, double amount)
+        protected BankAccount(int ownerId, double amount)
         {
             _numId++;
             Id = _numId;
@@ -31,6 +31,5 @@
         public abstract bool Refill(double amountMoney);
 
        public abstract bool TakeMoney(double amountMoney);
-
     }
 }
