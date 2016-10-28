@@ -37,6 +37,19 @@ namespace BankAccounts.Client
 
         }
 
+        public bool CloseBankAccount(int accountId)
+        {
+            var bankAccount = BankAccounts.FirstOrDefault(x => x.Identify == accountId);
 
+            if (bankAccount != null)
+            {
+                if (bankAccount.CloseAccount())
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

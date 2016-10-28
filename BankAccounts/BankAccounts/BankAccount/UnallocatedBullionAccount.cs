@@ -30,8 +30,6 @@ namespace BankAccounts
             return false;
         }
 
-
-
         public override bool Refill(double amountMoney)
         {
             if (IsClosed) return false;
