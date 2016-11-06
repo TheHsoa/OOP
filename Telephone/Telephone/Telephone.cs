@@ -2,24 +2,21 @@
 {
     class Telephone
     {
-        private readonly int CityCode;
-        private readonly int PhoneNumber;
+        private readonly int _cityCode;
+        private readonly int _phoneNumber;
 
         public Telephone(int cityCode, int phoneNumber)
         {
-            CityCode = cityCode;
-            PhoneNumber = phoneNumber;
+            _cityCode = cityCode;
+            _phoneNumber = phoneNumber;
         }
 
         public Telephone(int phoneNumber)
         {
-            PhoneNumber = phoneNumber;
-            CityCode = -1;
+            _phoneNumber = phoneNumber;
+            _cityCode = -1;
         }
 
-        public string GetCityCode()
-        {
-            return CityCode == -1 ? PhoneNumber.ToString() : $"({CityCode}) {PhoneNumber}";
-        }
+        public string Phone => _cityCode == -1 ? _phoneNumber.ToString() : $"({_cityCode}) {_phoneNumber}";
     }
 }
