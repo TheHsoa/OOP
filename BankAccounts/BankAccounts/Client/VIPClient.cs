@@ -1,6 +1,6 @@
 ﻿namespace BankAccounts.Client
 {
-    class VipClient : Client
+    class VipClient : ClientBase
     {
         public new bool AddNewBankAccount(BankAccount bankAccount)
         {

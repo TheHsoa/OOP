@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace BankAccounts.Client
 {
-    abstract class Client
+    abstract class ClientBase : IComparable
     {
         private static int _numId = 0;
         protected readonly int Id;
@@ -13,7 +14,7 @@ namespace BankAccounts.Client
 
         public int Identifier => Id;
 
-        protected Client(string fullName)
+        protected ClientBase(string fullName)
         {
             _numId += 1;
             Id = _numId;
@@ -26,10 +27,7 @@ namespace BankAccounts.Client
             return true;
         }
 
-        public double GetAllAmountOfMoneyInBankAccounts()
-        {
-            return BankAccounts.Select(x => x.AmountMoney).Sum();
-        }
+        public double AllAmountOfMoneyInBankAccounts => BankAccounts.Select(x => x.AmountMoney).Sum();
 
         public IEnumerable GetAllBankAccounts()
         {
@@ -50,6 +48,17 @@ namespace BankAccounts.Client
             }
 
             return false;
+        }
+
+        public int CompareTo(object obj)
+        {
+            var client = (ClientBase) obj;
+
+            if (AllAmountOfMoneyInBankAccounts > client.AllAmountOfMoneyInBankAccounts) return 1;
+
+            if (AllAmountOfMoneyInBankAccounts < client.AllAmountOfMoneyInBankAccounts) return -1;
+
+            return 0;
         }
     }
 }

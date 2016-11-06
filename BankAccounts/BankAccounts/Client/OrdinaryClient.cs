@@ -1,6 +1,6 @@
 ﻿namespace BankAccounts.Client
 {
-    class OrdinaryClient : Client
+    class OrdinaryClient : ClientBase
     {
         public new bool AddNewBankAccount(BankAccount bankAccount)
         {
