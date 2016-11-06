@@ -20,7 +20,7 @@ namespace BankAccounts.Client
             FullName = fullName;
         }
 
-        protected bool AddNewBankAccount(BankAccount bankAccount)
+        public virtual bool AddNewBankAccount(BankAccount bankAccount)
         {
             BankAccounts.Add(bankAccount);
             return true;
@@ -41,15 +41,7 @@ namespace BankAccounts.Client
         {
             var bankAccount = BankAccounts.FirstOrDefault(x => x.Identify == accountId);
 
-            if (bankAccount != null)
-            {
-                if (bankAccount.CloseAccount())
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return bankAccount != null && bankAccount.CloseAccount();
         }
     }
 }

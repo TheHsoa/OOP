@@ -7,7 +7,7 @@ namespace BankAccounts
         private readonly int _metalType;
         private double ExchangeRate { get; set; }
 
-        public new double AmountMoney { get { return Amount * ExchangeRate; } }
+        public override double AmountMoney => Amount * ExchangeRate;
 
         public UnallocatedBullionAccount(int ownerId, double amount, int metalType, double exchangeRate) : base(ownerId, amount)
         { 

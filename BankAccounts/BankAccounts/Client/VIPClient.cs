@@ -2,7 +2,7 @@
 {
     class VipClient : Client
     {
-        public new bool AddNewBankAccount(BankAccount bankAccount)
+        public override bool AddNewBankAccount(BankAccount bankAccount)
         {
             if (BankAccounts.Count >= 10) return false;
 

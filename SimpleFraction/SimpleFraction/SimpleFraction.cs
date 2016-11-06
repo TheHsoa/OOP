@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SimpleFraction
 {
@@ -15,7 +11,7 @@ namespace SimpleFraction
         {
             if (y == 0)
             {
-                throw new Exception("The denominator cannot be zero");
+                throw new DivideByZeroException("The denominator cannot be zero");
             }
 
             Numerator = x;

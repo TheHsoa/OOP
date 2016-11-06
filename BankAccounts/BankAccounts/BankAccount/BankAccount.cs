@@ -9,7 +9,7 @@
         protected bool IsClosed = false;
         public int Identify { get { return Id; } }
 
-        public double AmountMoney { get { return Amount; } }
+        public virtual double AmountMoney { get { return Amount; } }
 
         protected BankAccount(int ownerId, double amount)
         {
