@@ -19,7 +19,8 @@ namespace SimpleFraction
 
             ReduceFraction();
         }
-
+        
+        //Реализация алгоритма Евклида для нахождения НОД
         private long GCD(long x, long y)
         {
             return y == 0 ? x : GCD(y, x % y);
@@ -40,9 +41,18 @@ namespace SimpleFraction
 
         public int CompareTo(object obj)
         {
-            var fraction = (SimpleFraction) obj;
+            try
+            {
+                var fraction = (SimpleFraction) obj;
 
-            return (Numerator * fraction.Denominator) > (fraction.Numerator * Denominator) ? 1 : (Numerator * fraction.Denominator) < (fraction.Numerator * Denominator) ? -1 : 0;
+                return (Numerator*fraction.Denominator) > (fraction.Numerator*Denominator)
+                    ? 1
+                    : (Numerator*fraction.Denominator) < (fraction.Numerator*Denominator) ? -1 : 0;
+            }
+            catch (InvalidCastException)
+            {
+                throw new InvalidCastException("Can't cast Object to SimpleFraction");
+            }
         }
 
         public static SimpleFraction operator +(SimpleFraction f1, SimpleFraction f2)
