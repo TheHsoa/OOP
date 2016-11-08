@@ -52,11 +52,18 @@ namespace BankAccounts.Client
 
         public int CompareTo(object obj)
         {
-            var client = (ClientBase) obj;
+            try
+            {
+                var client = (ClientBase) obj;
 
-            if (AllAmountOfMoneyInBankAccounts > client.AllAmountOfMoneyInBankAccounts) return 1;
+                if (AllAmountOfMoneyInBankAccounts > client.AllAmountOfMoneyInBankAccounts) return 1;
 
-            if (AllAmountOfMoneyInBankAccounts < client.AllAmountOfMoneyInBankAccounts) return -1;
+                if (AllAmountOfMoneyInBankAccounts < client.AllAmountOfMoneyInBankAccounts) return -1;
+            }
+            catch (InvalidCastException)
+            {
+                throw new InvalidCastException("Can't cast Object to ClientBase");
+            }
 
             return 0;
         }
